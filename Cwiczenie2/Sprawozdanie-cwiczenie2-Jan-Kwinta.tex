@@ -34,7 +34,7 @@
 \maketitle
 
 \paragraph{Wstęp \\}
-Przedmiotem drugich laboratoriów z Elektroniki Cyfrowej były czwórniki bierne. Czwórnikiem nazywamy układ elektryczny posiadający dwie pary zacisków. Jedna z par stanowi wejście układu a druga jego wyjście. Czwórniki montowane i analizowane przeze mnie w trakcie laboratoriów to filtry górno-, dolno- i środkowoprzepustowy. Są to układy odpowiedzialne za przepuszczanie lub blokowanie sygnałów w zależności od ich częstotliwości. \\
+Przedmiotem drugich laboratoriów z Elektroniki Cyfrowej były czwórniki bierne. Czwórnikiem nazywamy układ elektryczny posiadający dwie pary zacisków. Jedna z par stanowi wejście układu, a druga jego wyjście. Czwórniki montowane i analizowane przeze mnie w trakcie laboratoriów to filtry górno-, dolno- i środkowoprzepustowy. Są to układy odpowiedzialne za przepuszczanie lub blokowanie sygnałów w zależności od ich częstotliwości. \\
 
 Filtr górnoprzepustowy blokuje sygnały o niskich częstotliwościach. Jest też nazywany układem CR (składa się z kondensatora i rezystora) lub układem różniczkującym (wyjście tego czwórnika śledzi zróżniczkowany sygnał wejściowy).
 
@@ -141,7 +141,8 @@ Teoretyczna częstotliwość graniczna powinna więc wynosić:
 
 $$ f_g = \frac{1}{2 \pi \tau} = \frac{1}{2 \pi \cdot 319.6} \cdot 10^{6} \left[ \frac{1}{s} \right] = 497.98  \left[ Hz \right] $$
 
-Podałem na wejście układu sygnał sinusoidalny o apmlitudzie $2 \ V$pp o częstotliwościach od $30 \ Hz$ do $8 kHz$. Wartości amplitudy wyjściowej oraz przesunięcie fazowego wynosiły jak w tabeli poniżej: \\
+Podałem na wejście układu sygnał sinusoidalny o apmlitudzie $2 \ V$pp o częstotliwościach od $30 \ Hz$ do $8 kHz$. Wartości amplitudy wyjściowej oraz przesunięcia fazowego wynosiły jak w tabeli poniżej: \\
+\\
 
 \begin{tabular}{ | m{4cm} | m{4cm}| m{4cm} | m{3.5cm} | } 
   \hline
@@ -221,6 +222,54 @@ Wykresy: stosunek $U_{WY} / U_{WE}$ oraz przesunięcie fazowe w zależności od 
 \end{figure}
 
 \newpage
+\paragraph{Ćwiczenie 2.2\\}
+Badanie odpowiedzi układu różniczkującego na podawaną na wejście falę prostokątną okresie $T$ mniejszym, porównywalnym i większym od stałej czasowej $\tau$. Badanie odpowiedzi układu na impuls trójkątny. \\
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{CR-square-0_1ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 0.1 \ ms \ \ \ f = 10 \ kHz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{CR-square-0_32ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 0.32 \ ms \ \ \ f = 3.125 \ kHz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{CR-square-0_8ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 0.8 \ ms \ \ \ f = 1.25 \ kHz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{CR-square-2ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 2 \ ms \ \ \ f = 500 \ Hz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{CR-square-5ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 5 \ ms \ \ \ f = 200 \ Hz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{CR-triangle}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał trójkątny \ \ $T = 2 \ ms \ \ \ f = 500 \ Hz$}
+\end{figure}
+
+
+
+\newpage
 \paragraph{Ćwiczenie 2.3\\}
 Zmontowanie układu całkujacego, zmierzenie stosunku amplitudy sygnału wejściowego do wyjściowego oraz kąta przesunięcia fazowego w zależności od częstotliwości. Przedstawienie tych wartości na wykresie i wyznaczenie dolnej częstotliwości granicznej.
 
@@ -235,7 +284,8 @@ Montując układ RC użyłem tych samych komponentów co w poprzednim ćwiczeniu
 $$ \tau = RC = 0.3196  \left[ ms \right] $$
 $$ f_g = 497.98  \left[ Hz \right] $$
 
-Podałem na wejście układu sygnał sinusoidalny o apmlitudzie $2 \ V$pp o częstotliwościach od $30 \ Hz$ do $8 kHz$. Wartości amplitudy wyjściowej oraz przesunięcie fazowego wynosiły jak w tabeli poniżej: \\
+Podałem na wejście układu sygnał sinusoidalny o apmlitudzie $2 \ V$pp o częstotliwościach od $30 \ Hz$ do $8 kHz$. Wartości amplitudy wyjściowej oraz przesunięcia fazowego wynosiły jak w tabeli poniżej: \\
+\\
 
 \begin{tabular}{ | m{4cm} | m{4cm}| m{4cm} | m{3.5cm} | } 
   \hline
@@ -262,7 +312,7 @@ Podałem na wejście układu sygnał sinusoidalny o apmlitudzie $2 \ V$pp o czę
 \end{tabular}
 
 \newpage
-Zamieszczam poniżej odczyty oscyloskopu. Kanał 1 (żółty) - sygnał wejściowy, kanał 2 (niebieski) - sygnał wyjściowy.
+Odczyty oscyloskopu. 
 
 \begin{figure}[H]
     \centering
@@ -315,7 +365,167 @@ Wykresy: stosunek $U_{WY} / U_{WE}$ oraz przesunięcie fazowe w zależności od 
 \end{figure}
 
 \newpage
+Podanie na wejście układu RC fali prostokątnej o okresach z zakresu od $0.5 \tau$ do $10 \tau$. Obserwacja przebiegów impulsów wyjściowych.
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{RC-square-0_1ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 0.1 \ ms \ \ \ f = 10 \ kHz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{RC-square-0_32ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 0.32 \ ms \ \ \ f = 3.125 \ kHz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{RC-square-0_8ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 0.8 \ ms \ \ \ f = 1.25 \ kHz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{RC-square-2ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 2 \ ms \ \ \ f = 500 \ Hz$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.65]{RC-square-5ms}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Sygnał prostokątny \ \ $T = 5 \ ms \ \ \ f = 200 \ Hz$}
+\end{figure}
+
+\newpage
+\paragraph{Ćwiczenie 2.3 \\}
+Zbudowanie układu RLC (filtr środkowoprzepustowy), zmierzenie jego charakterstyk amplitudowej i fazowej dla sygnałów sinusoidalnych i wyzna- czenie jego częstotliwości rezonansowej.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C4}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C5}}}%
+\end{figure}
+
+Montując układ RLC użyłem rezystora o oporze $6.8 \ k \Omega$, kondensatora o pojemności $47 \ nF$ i cewki o indukcyjności $15.8 \ mH$. Teoretyczna częstotliwość rezonansowa wynosi:
+
+$$ f_r = \frac{1}{2 \pi \sqrt{LC}} = \frac{1}{2 \pi \sqrt{15.8 \cdot 47 \cdot 10^{-12}}} \left[ \frac{1}{s} \right] = 5840.4 \left[ Hz \right] $$
+
+Podałem na wejście układu sygnał sinusoidalny o apmlitudzie $2 \ V$pp o częstotliwościach od $350 \ Hz$ do $120 kHz$. Wartości amplitudy wyjściowej oraz przesunięcia fazowego wynosiły jak w tabeli poniżej: \\
+\\
+
+\begin{tabular}{ | m{4cm} | m{4cm}| m{4cm} | m{3.5cm} | } 
+  \hline
+  \textbf{Częstotliwość} & \textbf{Amplituda wyjściowa} & \textbf{Przesunięcie fazowe} & \textbf{Stosunek } $U_{WY} / U_{WE}$ \\ 
+  \hline
+  $350 \ Hz$ & $1.14 \ V$ & $55.68^{\circ}$ & $0.57$ \\
+  \hline
+  $700 \ Hz$ & $1.58 \ V$ & $35.4^{\circ}$ & $0.79$ \\
+  \hline
+  $1.45 \ kHz$ & $1.86 \ V$ & $17.81^{\circ}$ & $0.93$ \\
+  \hline
+  $2.9 \ kHz$ & $1.96 \ V$ & $8.913^{\circ}$ & $0.98$ \\
+  \hline
+  $5.8 \ kHz$ & $2 \ V$ & $-0.5022^{\circ}$ & $1$ \\
+  \hline
+  $10 \ kHz$ & $1.96 \ V$ & $-6.805^{\circ}$ & $0.98$ \\
+  \hline
+  $20 \ kHz$ & $1.94 \ V$ & $-14.75^{\circ}$ & $0.97$ \\
+  \hline
+  $40 \ kHz$ & $1.84 \ V$ & $-36^{\circ}$ & $0.92$ \\
+  \hline
+  $80 \ kHz$ & $1.36 \ V$ & $-71.26^{\circ}$ &  $0.68$ \\
+  \hline
+  $120 \ kHz$ & $780 \ mV$ & $-97.39^{\circ}$ &  $0.39$ \\
+  \hline
+\end{tabular}
+
+\newpage
+Zamieszczam poniżej odczyty oscyloskopu. Kanał 1 (żółty) - sygnał wejściowy, kanał 2 (niebieski) - sygnał wyjściowy.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $350 \ Hz$]{{\includegraphics[width=7cm]{RLC-350-Hz}}}%
+    \qquad
+    \subfloat[\centering $700 \ Hz$]{{\includegraphics[width=7cm]{RLC-700-Hz}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $1.45 \ kHz$]{{\includegraphics[width=7cm]{RLC-1_4-kHz}}}%
+    \qquad
+    \subfloat[\centering $2.9 \ kHz$]{{\includegraphics[width=7cm]{RLC-2_9-kHz}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $5.8 \ kHz$]{{\includegraphics[width=7cm]{RLC-5_8-kHz}}}%
+    \qquad
+    \subfloat[\centering $10 \ kHz$]{{\includegraphics[width=7cm]{RLC-10-kHz}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $20 \ kHz$]{{\includegraphics[width=7cm]{RLC-20-kHz}}}%
+    \qquad
+    \subfloat[\centering $40 \ kHz$]{{\includegraphics[width=7cm]{RLC-40-kHz}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $80 \ kHz$]{{\includegraphics[width=7cm]{RLC-80-kHz}}}%
+    \qquad
+    \subfloat[\centering $120 \ kHz$]{{\includegraphics[width=7cm]{RLC-120-kHz}}}%
+\end{figure}
+
+\newpage
+Wykresy: stosunek $U_{WY} / U_{WE}$ oraz przesunięcie fazowe w zależności od częstotliwości sygnału.
+
+\begin{figure}[H]
+\includegraphics[scale=0.7]{D4}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.7]{D5}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\newpage
 \paragraph{Omówienie wyników \\}
+Na wykresach charakterystyk amplitudowych i fazowych filtrów zaznaczyłem czerwoną kropką punkty, w których powinno znajdować się miejsce częstotliwości odpowiednio granicznej górnej, granicznej dolnej i rezonansowej. \\
+
+Dla charakterystyki amplitudowej filtrów górnoprzepustowego i dolnoprzepustowego jest to miejsce tłumienia większego niż $3 \ dB$. Wartość takiego stosunku amplitud wyjściowej do wejściowej można policzyć z definicji decybela:
+
+$$ 20 \log_{10}(x) = -3 \Rightarrow x \approx 0.707 $$
+
+Pozostałymi takimi punktami są $\frac{U_{WY}}{U_{WE}} = 1$ dla częstotliwości rezonansowej filtra środkowoprzepustowego i odpowiednio $45^{\circ}$, $-45^{\circ}$ i $0^{\circ}$ dla charakterystyk fazowych układów CR, RC i RLC. \\
+
+Kropkami zielonymi zaznaczyłem te częstotliwości, które wyznaczyłem na podstawie sporządzonych wykresów. Są to odpowiednio: \\
+$f_1 = 530 \ Hz \ \ \ f_2 = 525 \ Hz$ \\
+$f_3 = 452 \ Hz \ \ \ f_4 = 490 \ Hz$ \\
+$f_5 = f_6 = 5800 \ Hz$
+
+Możemy obliczyć błędy względne:
+$$ E_1 = \left| \frac{498 - 530}{498} \right| \approx 6.42\% $$
+$$ E_2 = \left| \frac{498 - 525}{498} \right| \approx 5.42\% $$
+$$ E_3 = \left| \frac{498 - 452}{498} \right| \approx 9.24\% $$
+$$ E_4 = \left| \frac{498 - 490}{498} \right| \approx 1.61\% $$
+$$ E_5 = E_6 = \left| \frac{5840 - 5800}{5840} \right| \approx 6.85\% $$
+
+Błąd przy wyznaczaniu częstotliwości granicznych i rezonansowej to średnio około $6 \%$. \\
+
+Także odpowiedzi układów CR i RC na sygnały prostokątne i trójkątne pokrywają się z teorią. Widać na podanych przeze mnie wyżej odczytach z oscyloskopu skąd biorą się nazwy "układ różniczkujący" i "całkujący". Widać też jaki wpływ na sygnał wyjściowy ma stała czasowa układów, które potrzebują $\tau$ czasu na powrócenie do stanu ustalonego.
 
 \newpage
 \paragraph{Notatki z zeszytu labolatoryjnego \\}
@@ -350,7 +560,7 @@ Poniżej załączone są notatki z zeszytu labolatoryjnego, które prowadziłem 
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[scale=0.2]{B3}
+\includegraphics[scale=0.2]{B4}
 \centering
 \captionsetup{labelformat=empty}
 \caption{}
