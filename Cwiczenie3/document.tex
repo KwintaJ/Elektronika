@@ -1,0 +1,545 @@
+\documentclass[14pt, table]{extarticle}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={7in, 10.5in}]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{tgbonum}
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{arrows}
+\hyphenpenalty 10000
+\usepackage{subfig}
+\usepackage{array}
+
+\title{\textbf{Sprawozdanie} \\ \Large{Ćwiczenie 3}}
+\date{Data wykonania: 19 kwietnia 2023}
+\author{ \Large{Jan Kwinta} \\ \large{Prowadzący ćwiczenia: dr. Szymon Niedźwiedzki}}
+
+
+\newcommand{\nl}{\vspace{0.5cm}}
+\newcommand{\nz}{\vspace{1.5cm}}
+\newcommand{\zatem}{\textrm{Zatem }}
+
+\definecolor{trueGreen}{HTML}{009900}
+
+\begin{document}
+\maketitle
+
+\paragraph{Wstęp \\}
+Tematem trzecich zajęć z elektroniki były wzmacniacze operacyjne i układy elektryczne budowane przy ich użyciu: wzmacniacz odwracający fazę, sumator, przerzutnik Schmidta i multiwibrator astabilny. \\
+
+Wzmacniacz operacyjny to wzmacniacz o bardzo dużym wzmocnieniu napięciowym, który posiada dwa wejścia i jedno wyjście. Jedno wejście, oznaczane minusem to wejście odwracające – sygnał wyjściowy jest prze- sunięty w fazie o $180^{\circ}$ względem sygnału przyłożonego do tego wejścia. Drugie wejście, oznaczane plusem, to wejście nieodwracające – sygnał wyjściowy jest zgodny w fazie z sygnałem podanym na to wejściu. \\
+
+Napięcie na wyjściu wzmacniacza operacyjnego względem napięć na wejściu (+) i (-) dane jest funkcją:
+$$ U_{WY} = K(U_+ - U_-) \textrm{ , gdzie } K  \textrm{ to wzmocnienie napięciowe.}$$ 
+
+Idealny wzmacniacz operacyjny ma nieskończenie duże wzmocnienie napięciowe $K$, nieskończenie dużą rezystancję wejściową, zerową rezystancję wyjściową, nieskończenie szerokie pasmo przenoszenia (częstotliwości sy- gnałów od $0$ do $\infty \ Hz$) i napięcie wyjściowe równe zeru, jeżeli obydwa napięcia wejściowe są identyczne. \\
+
+Wzmacniacz operacyjny jest zazwyczaj częścią większego układu, często obwodu sprzężenia zwrotnego (czyli takiego, gdzie wyjście oddziałuje na wejście). Schematy montowanych przeze mnie takich układów znajdują się na kolejnych stronach.
+
+\newpage
+\textbf{Wzmacniacz odwracający fazę.}
+
+\begin{center}
+\begin{circuitikz}
+
+  	\draw (0, 0) node[op amp] (opamp) {};
+	\draw (opamp.out) to [short,-o] +(2, 0);
+	\draw (2, 0) to (2, 2.5)
+			  to [european resistor=$R_f$] (-2, 2.5)
+			  to (-2, 0.5); 
+	
+	\draw (opamp.-) to (-2, 0.5)
+				to [european resistor=$R_1$] (-6, 0.5)
+				to [short,-o] (-6.1, 0.5);
+
+	\draw (opamp.+) to (-2, -0.5) 
+				to (-2, -2) node[ground]{};
+
+\end{circuitikz}
+\end{center}
+
+Napięcie na wyjściu jest funkcją napięcia na wejściu, która zależy od rezystancji użytych oporników. Minus przy stosunku oporów oznacza obrócenie fazy (przesunięcie o 180 stopni).
+
+$$ U_{WY} = - R_f \frac{U_{WE}}{R_1} $$ \\
+
+\textbf{ Sumator o dwóch wejściach.}
+
+\begin{center}
+\begin{circuitikz}
+
+  	\draw (0, 0) node[op amp] (opamp) {};
+	\draw (opamp.out) to [short,-o] +(2, 0);
+	\draw (2, 0) to (2, 2.5)
+			  to [european resistor=$R_f$] (-2, 2.5)
+			  to (-2, 0.5); 
+	
+	\draw (opamp.-) to (-2, 0.5)
+				to (-3, 0.5)
+				to [european resistor=$R_2$] (-7, 0.5)
+				to [short,-o] (-7.1, 0.5);
+
+	\draw (-3, 0.5) to (-3, 2)
+				to [european resistor=$R_1$] (-7, 2)
+				to [short,-o] (-7.1, 2);
+
+	\draw (opamp.+) to (-2, -0.5) 
+				to (-2, -2) node[ground]{};
+
+\end{circuitikz}
+\end{center}
+
+Sumator, nazywany też wzmacniaczem sumującym jest układem podo- bnym do powyższego, w którym napięcie wyjściowe zależy od sumy (ważonej oporami) napięć wejściowych. W przypadku dwóch wejść: 
+$$ U_{WY} = -R_f \left( \frac{U_1}{R_1} + \frac{U_2}{R_2} \right) $$
+
+\newpage
+\textbf{ Przerzutnik Schmidta.}
+
+\begin{center}
+\begin{circuitikz}
+
+  	\draw (0, 0) node[op amp] (opamp) {};
+	\draw (opamp.out) to [short,-o] +(2, 0);
+
+	\draw (2, 0) to [european resistor=$R_1$] (2, -2.5)
+			  to [european resistor=$R_2$] (2, -5)
+			  to (2, -5.1) node[ground]{}; 
+
+	\draw (2, -2.5) to (-2, -2.5)
+				to (-2, -0.5)
+				to (opamp.+);
+
+	\draw (opamp.-) to [short,-o] (-2, 0.5);
+
+\end{circuitikz}
+\end{center}
+
+W tym układzie dodatnie sprzężenie zwrotne realizowane jest przez oporowy dzielnik napięcia. Napięcie wyjściowe przyjmuje wartości: ma- ksymalną ($+E$) lub minimalną ($-E$), które określone są przez napięcia podawane na zasilanie wzmacniacza operacyjnego. Jeżeli $U_- < U_+$ to $U_{WY} = +E$, a jeżeli $U_- > U_+$ to $U_{WY} = -E$. Jest to przerzutnik bistabilny, czyli taki, który ma dwa stany stabilne.
+
+\newpage
+\textbf{ Multiwibrator astabilny.}
+
+\begin{center}
+\begin{circuitikz}
+
+  	\draw (0, 0) node[op amp] (opamp) {};
+	\draw (opamp.out) to [short,-o] +(2, 0);
+
+	\draw (2, 0) to (2, 2.5)
+			  to [european resistor=$R_f$] (-2, 2.5)
+			  to (-2, 0.5); 
+
+	\draw (2, 0) to [european resistor=$R_1$] (2, -2.5)
+			  to [european resistor=$R_2$] (2, -5)
+			  to (2, -5.1) node[ground]{}; 
+
+	\draw (2, -2.5) to (-2, -2.5)
+				to (-2, -0.5)
+				to (opamp.+);
+
+	\draw (opamp.-) to (-2, 0.5)
+				to (-4, 0.5)
+				to [C=$C$] (-4, -3.1)
+				to (-4, -5.1) node[ground]{};
+
+\end{circuitikz}
+\end{center}
+
+Podobny do układu przerzutnika Schmmidta realizuje oprócz sprzężenia zwrotnego dodatniego sprzężenie zwrotne ujemne. Nie posiada wejścia, jest układem astabilnym (nie posiada stanów stabilnych). Realizowane jest to przez ładowanie i rozładowywanie kondensatora na wejściu układu przez prąd przepływajacy przez opornik $R_f$ ujemnego sprzężenia zwrotnego. W przerzutniku następują cykliczne przejścia pomiędzy stanami +E i ­E na wyjściu (sygnał wyjściowy jest falą prostokątną o apmlitudzie \textit{peak-to-peak} $2E$. Okres drgań układu wynosi:
+
+$$ T = 2 R_f C \ln \left( \frac{1 + \gamma}{1 - \gamma} \right) $$
+$$ \textrm{gdzie } \gamma = \frac{R_2}{R_1 + R_2} $$
+
+\newpage
+\paragraph{Ćwiczenie 3.1 \\}
+
+Schemat ideowy wzmacniacza operacyjnego.
+
+\begin{figure}[H]
+\includegraphics[scale=0.07]{C0}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Płytka ze wzmacniaczem operacyjnym.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering Napięcie $12 \ V$]{{\includegraphics[width=7cm]{C8}}}%
+    \qquad
+    \subfloat[\centering Napięcie $-12 \ V$]{{\includegraphics[width=7cm]{C9}}}%
+\end{figure}
+
+\newpage
+\paragraph{Ćwiczenie 3.2 \\}
+Zmontowanie wzmacniacza odwracającego fazę o wzmocnieniu 10, zdjęcie jego charakterystyki częstotliwościowej i fazowej.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C1}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C2}}}%
+\end{figure}
+
+Montując ten układ użyłem rezystorów o oporze $R_f = 100 \ k \Omega$ oraz $R_1 = 10 \ k \Omega$. Wzmocnienie tego wzmacniacza powinno więc wynosić 10:
+
+$$ U_{WY} = - \frac{R_f}{R_1} U_{WE} = - \frac{100 \ k \Omega}{10 \ k \Omega} U_{WE} = -10 U_{WE} $$
+
+Gdzie minus przy napięciu wyjściowym oznacza odwrócenie fazy. \\
+
+Podałem na wejście układu sygnał sinusoidalny o częstotliwości $1 \ kHz$ i amplitudzie $100 \ mV$pp. Napięcie na wyjściu zmierzone oscyloskopem wynosiło $1.05 \ V$pp i sygnał wyjściowy był przesunięty o około $175.8^{\circ}$ w stosunku do wejściowego.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering Dziesięciokrotne wzmocnienie sygnału i odwrócenie fazy]{{\includegraphics[width=7cm]{A0}}}%
+\end{figure}
+
+\newpage
+Aby zdjąć charakterystyki amplitudową i fazową zbudowanego przeze mnie układu podałem sygnał sinusoidalny o amplitudzie $100 \ mV$pp i często- tliwości z przedziału od $100 \ Hz$ do $900 \ kHz$. Na kolejnej stronie znajdują się zrzuty ekranu z oscyloskopu (nie wszystkie pomiary, żeby nie przedłużać niepotrzebnie tego sprawozdania).
+
+\begin{tabular}{ | m{4cm} | m{4cm}| m{4cm} | m{3.5cm} | } 
+  \hline
+  \textbf{Częstotliwość} & \textbf{Amplituda wyjściowa} & \textbf{Przesunięcie fazowe} & \textbf{Stosunek } $U_{WY} / U_{WE}$ \\ 
+  \hline
+  $100 \ Hz$ & $1.04 \ V$ & $178.5^{\circ}$ & $10.4$ \\
+  \hline
+  $200 \ Hz$ & $1.03 \ V$ & $176.8^{\circ}$ & $10.3$ \\
+  \hline
+  $300 \ Hz$ & $1.04 \ V$ & $173^{\circ}$ & $10.4$ \\
+  \hline
+  $400 \ Hz$ & $1.04 \ V$ & $177.7^{\circ}$ & $10.4$ \\  
+  \hline
+  $500 \ Hz$ & $1.05 \ V$ & $176.4^{\circ}$ & $10.5$ \\
+  \hline
+  $600 \ Hz$ & $1.03 \ V$ & $177^{\circ}$ & $10.3$ \\
+  \hline
+  $700 \ Hz$ & $1.04 \ V$ & $176.9^{\circ}$ & $10.4$ \\
+  \hline
+  $800 \ Hz$ & $1.05 \ V$ & $175.7^{\circ}$ & $10.5$ \\
+  \hline
+  $900 \ Hz$ & $1.03 \ V$ & $175^{\circ}$ & $10.3$ \\
+  \hline
+  $1 \ kHz$ & $1.03 \ V$ & $176^{\circ}$ & $10.3$ \\
+  \hline
+  $2 \ kHz$ & $1.04 \ V$ & $175.5^{\circ}$ & $10.4$ \\
+  \hline
+  $3 \ kHz$ & $1.03 \ V$ & $176.1^{\circ}$ & $10.3$ \\
+  \hline
+  $4 \ kHz$ & $1.04 \ V$ & $173.1^{\circ}$ & $10.4$ \\
+  \hline
+  $5 \ kHz$ & $1.04 \ V$ & $173^{\circ}$ & $10.4$ \\
+  \hline
+  $6 \ kHz$ & $1.03 \ V$ & $175.2^{\circ}$ & $10.3$ \\
+  \hline
+  $7 \ kHz$ & $1.03 \ V$ & $173.7^{\circ}$ & $10.3$ \\
+  \hline
+  $8 \ kHz$ & $1.04 \ V$ & $172.9^{\circ}$ & $10.4$ \\
+  \hline
+  $9 \ kHz$ & $1.03 \ V$ & $172.1^{\circ}$ & $10.3$ \\
+  \hline
+  $10 \ kHz$ & $1.04 \ V$ & $173.2^{\circ}$ & $10.4$ \\
+  \hline
+  $20 \ kHz$ & $1.02 \ V$ & $163.9^{\circ}$ & $10.2$ \\
+  \hline
+  $30 \ kHz$ & $1 \ V$ & $156^{\circ}$ & $10$ \\
+  \hline
+  $40 \ kHz$ & $960 \ mV$ & $148.8^{\circ}$ & $9.6$ \\
+  \hline
+  $50 \ kHz$ & $928 \ mV$ & $144.1^{\circ}$ & $9.28$ \\
+  \hline
+  $60 \ kHz$ & $880 \ mV$ & $139^{\circ}$ & $8.8$ \\
+  \hline
+  $70 \ kHz$ & $832 \ mV$ & $132^{\circ}$ & $8.32$ \\
+  \hline
+  $80 \ kHz$ & $792 \ mV$ & $130.4^{\circ}$ & $7.92$ \\
+  \hline
+  $90 \ kHz$ & $752 \ mV$ & $127.7^{\circ}$ & $7.52$ \\
+  \hline
+  $100 \ kHz$ & $712 \ mV$ & $121.7^{\circ}$ & $7.12$ \\
+  \hline
+  $200 \ kHz$ & $440 \ mV$ & $97.69^{\circ}$ & $4.4$ \\
+  \hline
+  $300 \ kHz$ & $286 \ mV$ & $88.38^{\circ}$ & $2.86$ \\
+  \hline
+  $400 \ kHz$ & $216 \ mV$ & $79.96^{\circ}$ & $2.16$ \\
+  \hline
+  $500 \ kHz$ & $174 \ mV$ & $70.81^{\circ}$ & $1.74$ \\
+  \hline
+  $600 \ kHz$ & $138 \ mV$ & $65.04^{\circ}$ & $1.38$ \\
+  \hline
+  $700 \ kHz$ & $117 \ mV$ & $58.04^{\circ}$ & $1.17$ \\
+  \hline
+  $800 \ kHz$ & $102 \ mV$ & $51.72^{\circ}$ & $1.02$ \\
+  \hline
+  $900 \ kHz$ & $88 \ mV$ & $47.91^{\circ}$ & $0.88$ \\
+  \hline
+\end{tabular}
+
+\newpage
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $100 \ Hz$]{{\includegraphics[width=7cm]{A1}}}%
+    \qquad
+    \subfloat[\centering $300 \ Hz$]{{\includegraphics[width=7cm]{A3}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $400 \ Hz$]{{\includegraphics[width=7cm]{A4}}}%
+    \qquad
+    \subfloat[\centering $500 \ Hz$]{{\includegraphics[width=7cm]{A5}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $600 \ Hz$]{{\includegraphics[width=7cm]{A6}}}%
+    \qquad
+    \subfloat[\centering $1 \ kHz$]{{\includegraphics[width=7cm]{A7}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $5 \ kHz$]{{\includegraphics[width=7cm]{A8}}}%
+    \qquad
+    \subfloat[\centering $10 \ kHz$]{{\includegraphics[width=7cm]{A9}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $20 \ kHz$]{{\includegraphics[width=7cm]{A10}}}%
+    \qquad
+    \subfloat[\centering $30 \ kHz$]{{\includegraphics[width=7cm]{A11}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $100 \ kHz$]{{\includegraphics[width=7cm]{A12}}}%
+    \qquad
+    \subfloat[\centering $200 \ kHz$]{{\includegraphics[width=7cm]{A13}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $300 \ kHz$]{{\includegraphics[width=7cm]{A14}}}%
+    \qquad
+    \subfloat[\centering $700 \ kHz$]{{\includegraphics[width=7cm]{A15}}}%
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $800 \ kHz$]{{\includegraphics[width=7cm]{A16}}}%
+    \qquad
+    \subfloat[\centering $900 \ kHz$]{{\includegraphics[width=7cm]{A17}}}%
+\end{figure}
+
+\newpage
+\textbf{Wykresy} charakterystyk fazowej i amplitudowej wzmacniacza.
+
+\begin{figure}[H]
+\includegraphics[scale=0.8]{D1}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.8]{D0}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\newpage
+\paragraph{Ćwiczenie 3.3 \\}
+Zmontowanie sumatora o dwóch wejściach. Zsumowanie drgań sinuso- idalnych z dwóch generatorów, zaobserwowanie dudnień.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C3}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C4}}}%
+\end{figure}
+
+Montując ten układ użyłem rezystorów o oporze $R_f = 100 \ k \Omega$ oraz $R_1 = R_2 = 10 \ k \Omega$. Na dwa wejścia wzmacniacza sumującego podałem z dwóch kanałów generatora sygnały sinus o amplitudzie $100 \ mV$pp i częstotliwościach $1 \ kHz$ i $1.1 \ kHz$. \\
+
+Jeżeli sygnały zostały poprawnie zsumowane, to zaobserwowane dudnienia powinny mieć teoretyczne częstotliwości:
+
+$$ \textrm{Częstotliwość wypadkowa: } f_w = \frac{f_1 + f_2}{2} = \frac{1 + 1.1}{2} = 1.05 \left[ kHz \right] $$ 
+
+$$ \textrm{Częstotliwość dudnień: } f_d = \left| f_1 - f_2 \right| = \left| 1 -  1.1 \right| = 0.1 \left[ kHz \right] = 100 \left[ Hz \right] $$ \\
+
+I odpowiadające im okresy:
+
+$$ T_w = \frac{1}{f_w} = \frac{1}{1050} \left[ \frac{1}{Hz} \right] = 0.00095238 \left[ s \right] = 952.38 \left[ \mu s \right] $$
+
+$$ T_d = \frac{1}{f_d} = \frac{1}{100} \left[ \frac{1}{Hz} \right] = 0.01 \left[ s \right] = 10 \left[ ms \right] $$
+
+\newpage
+Zaobserwowane przeze mnie okresy wypadkowy i dudnień wynosiły:
+
+\begin{figure}[H]
+\includegraphics[scale=0.6]{A20}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Okres wypadkowy $T_w = 960 \ \mu s$}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.6]{A19}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Okres dudnień $T_d = 10 \ ms$}
+\end{figure}
+
+\newpage
+\paragraph{Ćwiczenie 3.4 \\}
+Zbudowanie przerzutnika Schmidta dla napięcia histerezy równego $ 1 \ V$. Zaobserwowanie przebiegów napięcia wyjściowego, wykreślenie charakte- rystyki statycznej układu.
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C5}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{C6}}}%
+\end{figure}
+
+Montując przerzutnik jako rezystorów w dzielniku napięcia w układzie sprzężenia zwrotnego dodatniego uzyłem znajdujących się na płytce poten- cjometrów. Badając przebiegi napięcia wejściowego ustawiłem potencjometry na takie wartości, aby napięcie histerezy było równe $1 \ V$, a po rozmontowaniu układu zmierzyłem rezystancję na obydwu potencjometrach.\\
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $R_1 = 744 \ \Omega$]{{\includegraphics[width=7cm]{C11}}}%
+    \qquad
+    \subfloat[\centering $R_2 = 35.3 \ \Omega$]{{\includegraphics[width=7cm]{C10}}}%
+\end{figure}
+
+\newpage
+Przy tych oporach podając na wejście przerzutnika sygnał sinusoidalny o amplitudzie $992 \ mV$ napięcie na wyjściu było stałe, wynoszące około $10 \ V$. Kiedy zwiększyłem amlitudę sygnały wejściowego do $ 1 \ V$pp na wyjściu zaobserwowałem sygnał zbliżony do fali prostokątnej, o amplitudzie $~19 \ V$pp i częstotliwościu równej fali sinusoidalnej podanej na wejście układu.
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{A23}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{A24}}}%
+\end{figure}
+
+Po zmianie kształtu fali sygnału wejściowego na trójkątny aby dochodziło do zmian stanów przerzutnika musiałem zwiększyć napięcie na wejściu (około $1.04 \ V$).
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{A26}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{A27}}}%
+\end{figure}
+
+\newpage
+Na wykresach X-Y oscylatora zaobserwować można charakterystykę statyczną układu (dla sygnałów sinusoidalnego i trójkątnego). W obydwu przypadkach wartości na osi y zamykały się w przedziale od około $-9.2 \ V$ do $10 \ V$ (oscyloskop zmierzył $\Delta y = 19.2 \ V$. Te wartości odpowiadały amplitudzie sygnału na wyjściu przerzutnika. \\
+
+Wartości na osi x, odpowiadające napięciu wejściowemu, miały amplitudę $\Delta x = 1.18 \ V$ i $1.04 \ V$ odpowiednio dla sygnału sinusoidalnego i trójkątnego.
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{A25}}}%
+    \qquad
+    \subfloat[\centering ]{{\includegraphics[width=7cm]{A28}}}%
+\end{figure}
+
+\newpage
+\paragraph{Ćwiczenie 3.5 \\}
+Zbudowanie multiwibratora astabilnego. Zaobserwowanie i odrysowanie przebiegów impulsów na wyjściu układu i na wejściu (-) wzmacniacza operacyjnego. Porównanie zmierzonego okresu drgań z wartością teoretyczną.
+
+\begin{figure}[H]
+\includegraphics[scale=0.1]{C7}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+Montując ten układ użyłem kondensatora o pojemności $C = 47 \ nF$ i w układzie ujemnego sprzężenia zwrotnego opornika o rezystancji $R_f = 6.2 \ k \Omega$. Jako oporniki w dzielniku napięcia w układzie dodatniego sprzężenia zwrotnego użyłem, tak jak w zadaniu powyżej, potencjometrów na płytce. Po rozmontowaniu układu zmierzyłem ich opory:
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\centering $R_1 = 956 \ \Omega$]{{\includegraphics[width=7cm]{C13}}}%
+    \qquad
+    \subfloat[\centering $R_2 = 64.4 \ \Omega$]{{\includegraphics[width=7cm]{C12}}}%
+\end{figure}
+
+\newpage
+Teoretyczny okres drgań multiwibratora:
+
+$$ T = 2 R_f C \ln \left( \frac{1 + \gamma}{1 - \gamma} \right) $$
+$$ \textrm{gdzie } \gamma = \frac{R_2}{R_1 + R_2} $$
+
+$$ \gamma = \frac{64.4}{956 + 64.4} = \frac{64.4}{1020.4} = 0.0631125 $$
+
+$$ T = 2 \cdot 6.2 \cdot 10^{3} \cdot 47 \cdot 10^{-9} \cdot \ln \left( \frac{1 + 0.0631125}{1 - 0.0631125} \right) = 582.8 \cdot 10^{-6} \cdot \ln \left( \frac{1.0631125}{0.9368875} \right) \approx $$
+$$ \approx 582.8 \cdot 10^{-6} \cdot 0.126392994 \approx 73.6618 \cdot 10^{-6} \left[ s \right] = 73.6618 \left[ \mu s \right] $$
+
+\smallskip
+Zmierzona wartość okresu drgań: 
+
+\begin{itemize}
+	\item Kanał żółty - przebieg napięcia na wejściu (-) wzmacniacza operacyjnego
+	\item Kanał niebieski - przebieg impulsów na wyjściu układu
+\end{itemize}
+
+\begin{figure}[H]
+\includegraphics[scale=0.8]{A33}
+\centering
+\captionsetup{labelformat=empty}
+\caption{Zaobserwowany okres drgań: $T = 150 \ \mu s$}
+\end{figure}
+
+\newpage
+\paragraph{Omówienie wyników \\}
+W ćwiczeniach 3.2 i 3.3 zarówno pomiary jak i wyniki, które policzyłem na ich podstawie były bardzo zbliżone do teoretycznych wartości spodzie- wanych. W ćwiczeniu 3.2 punkt załamania charakterystyki amplitudowej i fazowej (częstotliwość sygnału wejściowego, powyżej której wzmocnienie wzmacniacza spada) jest pomiędzy $30 \ kHz$ a $40 \ kHz$. Jest to spowodowane tym, że używany na zajęciach wzmacniacz operacyjny nie jest wzmacniaczem idealnym i posiada pewne skończenie szerokie pasmo przenoszenia. Wzmo- cnienie układu było o kilka procent (około $4 - 5 \%$) większe niż spodziewane 10 razy. Jest to prawdopodobnie powodowane niedokładnościami kompo- nentów - oporników i wzmacniacza operacyjnego. \\
+
+W ćwiczeniu 3.3 natomiast, przy badaniu dudnień zsumowanych sygna- łów zmierzony okres dudnień był dokładnie taki jak spodziewany, a okres wypadkowy o $7.62 \ \mu s$ ($0.8 \%$) dłuższy niż teoretyczny. Również amplituda na wyjściu wzmacniacza sumującego była zbliżona do spodziewanej - przy rezystancjach $R_1 = R_2 = 10 \ k \Omega$, $R_f = 100 \ k \Omega$ i amplitudach sygnałów $100 \ mV$pp maksymalna wartość amplitudy wyjścia powinna być równa $100000 \cdot \left( \frac{0.1}{10000} + \frac{0.1}{10000} \right) = 2 \ \left[ V \right]$ \textit{peak-to-peak}, czyli maksymalna wartość napięcia na wyjściu to $1 \ V$, co widać na wykresach z oscyloskopu. Tu wartość znów o kilka procent większa, tak jak w zadaniu 3.2. \\
+
+Dopiero w zadaniu 3.4 pomiary przestały pasować do teorii. Z wykre- sów charakterystyk statycznych przerzutnika i wykresów przebiegu sygnału wyjściowego wynika, że stany układu wcale nie odpowiadają wartościom maksymalnej i minimalnej $12$ i $-12 \ V$. Nawet jeśli wziąć pod uwagę niedo- kładność, którą zmierzyłem w zadaniu 3.1 ($+E = 11.94 \ V$ oraz $-E = -12.12 V$) amplituda \textit{peak-to-peak} sygnału wyjściowego jest o około $5 \ V$ mniejsza niż spodziewana. Powodem takiego zjawiska jest fakt, że wzma- cniacz operacyjny zużywa część energii dostarczanej na piny wejściowe na wykonanie pracy (wzmacnianie sygnału wejściowego). \\ 
+
+Zupełnym zaskoczeniem okazały się wyniki zadania 3.5. Obliczona przeze mnie spodziewana wartość okresu drgań multiwibratora ($73.6618 \ \mu s$) była o ponad dwa razy mniejsza niż zaobserwowana ($150 \ \mu s$). Taka rozbieżność wynikać może z wielu przyczyn: pomyłki w obliczeniach, złej metody pomiarowej lub faktu, że przypadkowo zmieniłem pozycję potencjometrów przed pomiarem ich rezystancji. Po długiej inwestygacji źródeł mojego błędu nie jestem w stanie wychwycić.
+
+\newpage
+\paragraph{Notatki z zeszytu labolatoryjnego \\}
+Poniżej załączone są notatki z zeszytu labolatoryjnego, które prowadziłem podczas zajęć wykonując pomiary.
+
+\begin{figure}[H]
+\includegraphics[scale=0.2]{B0}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.2]{B1}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.2]{B2}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.2]{B3}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[scale=0.2]{B4}
+\centering
+\captionsetup{labelformat=empty}
+\caption{}
+\end{figure}
+
+\end{document}
