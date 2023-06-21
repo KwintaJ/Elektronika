@@ -8,3 +8,4 @@ Sprawozdania z ćwiczeń wykonywanych na laboratoriach kursu *Elektronika cyfrow
 **19.04.2023**: Ćwiczenie 3: *wzmacniacz operacyjny: wmacniacz, sumator, przerzutnik Schmidta, multiwibrator astabilny*  
 **10.05.2023**: Ćwiczenie 4: *układy logiczne, bramki NAND, NOR, XOR, przerzutnik R-S*  
 **24.05.2023**: Ćwiczenie 5: *przerzutniki synchroniczne, liczniki binarne, rejestry*  
+**07.06.2023**: Ćwiczenie 6: *komparatory, przetworniki analogowo-cyfrowe*  
